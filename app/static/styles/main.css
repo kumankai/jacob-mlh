@@ -95,3 +95,13 @@ body {
     font-size: 50px;
     font-weight: 700;
 }
+
+.hobbies {
+    text-align: center;
+    font-size: 160%;
+}
+
+.hobbies img {
+    width: 50%;
+    height: auto;
+}

@@ -29,5 +29,14 @@
             </a>
         </div>
     </header>
+
+    <div class="hobbies">
+        <h1>Hobbies</h1>
+
+        {% for item in hobbiesList %}
+        <p><b class>{{ item.hobby }}</b></p>
+        <img src="./static/img/{{ item.image }}">
+        {% endfor %}
+    </div>
 </body>
 </html>

@@ -17,10 +17,10 @@ education = [
     },
 ]
 
-hobbies = [
-    {"hobby": "Basketball", "image": ""},
-    {"hobby": "Guitar", "image": ""},
-    {"hobby": "Eating", "image": ""},
+hobbiesList = [
+    {"hobby": "Basketball", "image": "basketball.jpg"},
+    {"hobby": "Guitar", "image": "guitar.JPG"},
+    {"hobby": "Eating", "image": "food.JPG"},
 ]
 
 
@@ -37,4 +37,9 @@ def index():
 
 @app.route("/hobbies")
 def hobbies():
-    return render_template("hobbies.html", hobbies=hobbies)
+    return render_template(
+        "hobby-page.html",
+        title="Jacob Angga",
+        url=os.getenv("URL"),
+        hobbiesList=hobbiesList,
+    )
