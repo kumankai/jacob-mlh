@@ -28,7 +28,7 @@ hobbies = [
 def index():
     return render_template(
         "index.html",
-        title="MLH Fellow",
+        title="Jacob Angga",
         url=os.getenv("URL"),
         work_experience=work_experience,
         education=education,
