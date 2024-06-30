@@ -37,4 +37,6 @@ def index():
 
 @app.route("/hobbies")
 def hobbies():
-    return render_template("hobbies.html", hobbies=hobbies)
+    return render_template(
+        "hobbies.html", title="Jacob Angga", url=os.getenv("URL"), hobbies=hobbies
+    )
