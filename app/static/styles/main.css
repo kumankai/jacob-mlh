@@ -100,3 +100,8 @@ body {
     text-align: center;
     font-size: 160%;
 }
+
+.hobbies img {
+    width: 50%;
+    height: auto;
+}

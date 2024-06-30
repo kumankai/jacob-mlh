@@ -34,10 +34,8 @@
         <h1>Hobbies</h1>
 
         {% for item in hobbiesList %}
-        <p>
-            <b class>{{ item.hobby }}</b>
-            <!-- <img src="./static/img/logo.svg"> -->
-        </p>
+        <p><b class>{{ item.hobby }}</b></p>
+        <img src="./static/img/{{ item.image }}">
         {% endfor %}
     </div>
 </body>
