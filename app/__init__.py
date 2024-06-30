@@ -33,3 +33,8 @@ def index():
         work_experience=work_experience,
         education=education,
     )
+
+
+@app.route("/hobbies")
+def hobbies():
+    return render_template("hobbies.html", hobbies=hobbies)
