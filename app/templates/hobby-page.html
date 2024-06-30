@@ -32,6 +32,13 @@
 
     <div class="hobbies">
         <h1>Hobbies</h1>
+
+        {% for item in hobbiesList %}
+        <p>
+            <b class>{{ item.hobby }}</b>
+            <!-- <img src="./static/img/logo.svg"> -->
+        </p>
+        {% endfor %}
     </div>
 </body>
 </html>
