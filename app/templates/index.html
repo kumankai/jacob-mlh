@@ -46,7 +46,12 @@
             <p>{{ item.company }} - {{ item.position }}</p>
         {% endfor %}
     </div>
+    <div class="education">
+        <h2>Education</h2>
 
+        {% for item in education %}
+            <p><b>{{ item.institution }}</b> - {{ item.degree }}&nbsp;&nbsp;&nbsp;&nbsp;{{ item.date }}</p>
+        {% endfor %}
     </div>
 </body>
 </html>
