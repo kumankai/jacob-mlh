@@ -39,6 +39,15 @@
         <h2>About yourself</h2>
         <span>A computer science student from Sheridan College, Ontario, passionate about cloud and devops infrastructure!</span>
     </div>
+    <div class="work-experience">
+        <h2>Work experience</h2>
+
+        {% for item in work_experience %}
+            <p>{{ item.company }} - {{ item.position }}</p>
+        {% endfor %}
+        </ul>
+
+    </div>
 
     </div>
 </body>
