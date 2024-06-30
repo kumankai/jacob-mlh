@@ -15,6 +15,11 @@ education = [
         "degree": "Honors Bachelors of Computer Science",
         "date": "2022 - Present",
     },
+    {
+        "institution": "University of Saskatchewan",
+        "degree": "Bachelors in Science",
+        "date": "2021-2022",
+    },
 ]
 
 hobbiesList = [
