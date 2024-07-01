@@ -13,15 +13,19 @@ body {
 
 .nav-bar {
     width: 100%;
-    display: inline-block;
     background-color: #1C539F;
     font-family: "Roboto", serif;
     font-weight: 700 !important;
     padding-top: 10px;
+    font-size: 20px;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
 }
 
 .nav-content .logo-touch-target {
-    display: inline-flex;
     height: 60%;
     width: 350px;
 }
@@ -48,6 +52,15 @@ body {
     text-align: right;
     padding-top: 0px;
     padding-right: 0px;
+}
+
+.nav-buttons {
+    margin-top: 15px;
+}
+
+.nav-buttons a {
+    color: white;
+    margin-right: 50px;
 }
 
 .profile {
