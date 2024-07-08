@@ -56,7 +56,43 @@
         
             <input type="submit" value="Submit">
         </form>
+
+        <div class="posts">
+            <div id="posts-container"></div>
+        </div>
     </div>
     
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/api/timeline_post')
+                .then(response => response.json())
+                .then(data => {
+                    const postsContainer = document.getElementById('posts-container');
+                    data.timeline_posts.forEach(post => {
+                        const postElement = document.createElement('div');
+                        postElement.className = 'post';
+                        postElement.innerHTML = `
+                            <h3 class="name">${post.name}</h3>
+                            <p class="email">${post.email}</p>
+                            <p class="content">${post.content}</p>
+                            <small class="created_at">${post.created_at}</small>
+                        `;
+                        postsContainer.appendChild(postElement);
+                    });
+                });
+
+            document.getElementById('timelineForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(this);
+                const data = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    content: formData.get('content')
+                };
+
+            });
+        });
+    </script>
 </body>
 </html>

@@ -22,6 +22,8 @@
 
 .timeline textarea{
     height: 150px;
+    resize: none;
+    overflow-y: auto;
 }
 
 .timeline input[type=submit]{
@@ -36,4 +38,39 @@
 
 .timeline input[type=submit]:hover{
     background-color: #ffd382;
+}
+
+.posts {
+    padding-top: 20px;
+}
+
+.post {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.post .name {
+    margin-top: 0;
+    margin-bottom: 1px;
+}
+
+.post .email {
+    margin-top: 1px;
+    font-size:13px;
+}
+
+.post .content {
+    margin: 10px 0;
+}
+
+.post .created_at {
+    color: #777;
+    font-size: smaller;
 }
