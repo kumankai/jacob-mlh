@@ -44,7 +44,7 @@
     </header>
 
     <div class="timeline">
-        <form action="/api/timeline_post" method="POST">
+        <form id="timelineForm">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required>
         
@@ -63,36 +63,101 @@
     </div>
     
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('/api/timeline_post')
-                .then(response => response.json())
-                .then(data => {
-                    const postsContainer = document.getElementById('posts-container');
-                    data.timeline_posts.forEach(post => {
-                        const postElement = document.createElement('div');
-                        postElement.className = 'post';
-                        postElement.innerHTML = `
-                            <h3 class="name">${post.name}</h3>
-                            <p class="email">${post.email}</p>
-                            <p class="content">${post.content}</p>
-                            <small class="created_at">${post.created_at}</small>
-                        `;
-                        postsContainer.appendChild(postElement);
-                    });
-                });
+        const form = document.getElementById('timelineForm');
 
-            document.getElementById('timelineForm').addEventListener('submit', function(event) {
-                event.preventDefault();
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-                const formData = new FormData(this);
-                const data = {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    content: formData.get('content')
-                };
+            const formData = new FormData(form);
 
+            fetch('/api/timeline_post', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(post => {
+                const postsContainer = document.getElementById('posts-container');
+                const postElement = createPostElement(post);
+                postsContainer.insertBefore(postElement, postsContainer.firstChild);
+
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
         });
+
+        // Helper function to create a post element
+        function createPostElement(post) {
+            const postElement = document.createElement('div');
+            postElement.className = 'post';
+            postElement.innerHTML = `
+                <h3 class="name">${post.name}</h3>
+                <p class="email">${post.email}</p>
+                <p class="content">${post.content}</p>
+                <small class="created_at">${post.created_at}</small>
+            `;
+            return postElement;
+        }
+
+        fetch('/api/timeline_post')
+            .then(response => response.json())
+            .then(data => {
+                const postsContainer = document.getElementById('posts-container');
+                data.timeline_posts.forEach(post => {
+                    const postElement = createPostElement(post);
+                    postsContainer.appendChild(postElement);
+                });
+            });
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     fetch('/api/timeline_post')
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             const postsContainer = document.getElementById('posts-container');
+        //             data.timeline_posts.forEach(post => {
+        //                 const postElement = document.createElement('div');
+        //                 postElement.className = 'post';
+        //                 postElement.innerHTML = `
+        //                     <h3 class="name">${post.name}</h3>
+        //                     <p class="email">${post.email}</p>
+        //                     <p class="content">${post.content}</p>
+        //                     <small class="created_at">${post.created_at}</small>
+        //                 `;
+        //                 postsContainer.appendChild(postElement);
+        //             });
+        //         });
+
+        //     document.getElementById('timelineForm').addEventListener('submit', function(event) {
+        //         event.preventDefault();
+
+        //         const formData = new FormData(this);
+
+        //         fetch('/api/timeline_post', {
+        //             method: 'POST',
+        //             body: formData
+        //         })
+        //         .then(response => response.json())
+        //         .then(post => {
+
+        //             const postsContainer = document.getElementById('posts-container');
+        //             const postElement = document.createElement('div');
+        //             postElement.className = 'post';
+        //             postElement.innerHTML = `
+        //                 <h3 class="name">${post.name}</h3>
+        //                 <p class="email">${post.email}</p>
+        //                 <p class="content">${post.content}</p>
+        //                 <small class="created_at">${post.created_at}</small>
+        //             `;
+        //             postsContainer.insertBefore(postElement, postsContainer.firstChild);
+
+        //             this.reset();
+        //         })
+        //         .catch(error => {
+        //             console.error('Error:', error);
+        //         });
+        //     });
+            
+        // });
     </script>
 </body>
 </html>
