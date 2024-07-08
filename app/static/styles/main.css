@@ -12,6 +12,9 @@ body {
 }
 
 .nav-bar {
+    position: fixed;
+    top: 0;
+    z-index: 1000; 
     width: 100%;
     background-color: #1C539F;
     font-family: "Roboto", serif;
@@ -68,6 +71,7 @@ body {
     text-align: center;
     height: 320px;
     margin-bottom: 50px;
+    margin-top: 50px;
 }
 
 .profile h1 {
@@ -113,6 +117,7 @@ body {
 .hobbies {
     text-align: center;
     font-size: 160%;
+    margin-top: 100px;
 }
 
 .hobbies img {
