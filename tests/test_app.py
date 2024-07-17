@@ -13,6 +13,7 @@ class AppTestCase(unittest.TestCase):
     # creates a test client for flask app
     self.client = app.test_client()
   
+
   def test_home(self):
     # make a get request to client at base url
     response = self.client.get("/")
@@ -21,7 +22,11 @@ class AppTestCase(unittest.TestCase):
     # also check the html content
     html = response.get_data(as_text=True)
     assert "<title>Jacob Angga</title>" in html
+    assert "Home" in html
+    assert "Hobbies" in html
+    assert "Timeline" in html
   
+
   def test_timeline(self):
     # a get request to api endpoint should return json list of posts
     response = self.client.get("/api/timeline_post")
@@ -30,6 +35,7 @@ class AppTestCase(unittest.TestCase):
     json = response.get_json()
     assert "timeline_posts" in json
     assert len(json["timeline_posts"]) == 0 # should be empty
+    assert "Submit" in self.client.get('/timeline').get_data(as_text=True)
 
   def test_malformed_timeline_post(self):
     # MISSING name field
@@ -41,7 +47,6 @@ class AppTestCase(unittest.TestCase):
     html = response.get_data(as_text=True)
     assert "Invalid name" in html
 
-
     # EMPTY CONTENT FIELD
     response = self.client.post("/api/timeline_post", data={
       "name": "samin",
@@ -51,7 +56,6 @@ class AppTestCase(unittest.TestCase):
     assert response.status_code == 400
     html = response.get_data(as_text=True)
     assert "Invalid content" in html
-
 
     # MALFORMED EMAIL
     response = self.client.post("/api/timeline_post", data={
