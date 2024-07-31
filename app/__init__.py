@@ -9,16 +9,16 @@ load_dotenv()
 app = Flask(__name__)
 
 if os.getenv("TESTING") == "true":
-  print("running on test mode")
-  mydb = SqliteDatabase(':memory:')
+    print("running on test mode")
+    mydb = SqliteDatabase(":memory:")
 else:
-  mydb = MySQLDatabase(
-      os.getenv("MYSQL_DATABASE"),
-      user=os.getenv("MYSQL_USER"),
-      password=os.getenv("MYSQL_PASSWORD"),
-      host=os.getenv("MYSQL_HOST"),
-      port=3306,
-  )
+    mydb = MySQLDatabase(
+        os.getenv("MYSQL_DATABASE"),
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        host=os.getenv("MYSQL_HOST"),
+        port=3306,
+    )
 
 print(mydb)
 
@@ -57,7 +57,7 @@ education = [
 hobbiesList = [
     {"hobby": "Basketball", "image": "basketball.jpg"},
     {"hobby": "Guitar", "image": "guitar.JPG"},
-    {"hobby": "Eating", "image": "food.JPG"},
+    {"hobby": "Eating", "image": "chinese_food.jpg"},
 ]
 
 
@@ -89,12 +89,15 @@ def timeline():
 
 @app.route("/api/timeline_post", methods=["POST"])
 def post_time_line_post():
-    if "name" not in request.form: return "Invalid name", 400
+    if "name" not in request.form:
+        return "Invalid name", 400
     name = request.form["name"]
     email = request.form["email"]
-    if "@" not in email and ".com" not in email: return "Invalid email", 400
+    if "@" not in email and ".com" not in email:
+        return "Invalid email", 400
     content = request.form["content"]
-    if len(content) == 0: return "Invalid content", 400
+    if len(content) == 0:
+        return "Invalid content", 400
     timeline_post = TimelinePost.create(name=name, email=email, content=content)
 
     return model_to_dict(timeline_post)
