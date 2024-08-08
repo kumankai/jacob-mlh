@@ -28,6 +28,9 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_IP: ${{ secrets.SSH_IP }}
 
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
       - name: Test
         uses: ./.github/workflows/test.yml
 
