@@ -32,8 +32,8 @@ jobs:
         run: ssh my-vps '~/redeploy-site.sh'
 
       - name: "Deployment Successful"
+        working-directory: .
         run: |
-          cd jacob-mlh/
           docker compose ps
           curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
 
