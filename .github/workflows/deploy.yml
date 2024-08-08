@@ -28,5 +28,17 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_IP: ${{ secrets.SSH_IP }}
 
+      - name: Test
+        uses: ./.github/workflows/test.yml
+
       - name: Deploy site
         run: ssh my-vps '~/redeploy-site.sh'
+
+      - name: "Deployment Successful"
+        run: |
+          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
+          docker-compose ps
+
+      - name: "Deployment Failed"
+        if: failure()
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment Failed"
