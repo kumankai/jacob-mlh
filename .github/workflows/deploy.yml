@@ -32,10 +32,7 @@ jobs:
         run: ssh my-vps '~/redeploy-site.sh'
 
       - name: "Deployment Successful"
-        run: |
-          cd ~/
-          docker-compose ps
-          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
 
       - name: "Deployment Failed"
         if: failure()
