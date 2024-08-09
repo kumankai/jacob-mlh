@@ -33,7 +33,7 @@ jobs:
 
       - name: "Deployment Successful"
         run: |
-          docker ps
+          docker ps -a
           curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
 
       - name: "Deployment Failed"
