@@ -31,12 +31,9 @@ jobs:
       - name: Deploy site
         run: ssh my-vps '~/redeploy-site.sh'
 
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
-
       - name: "Deployment Successful"
         run: |
-          docker compose ps
+          docker ps
           curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
 
       - name: "Deployment Failed"
