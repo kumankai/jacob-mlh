@@ -29,12 +29,12 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
 
       - name: Deploy site
-        run: ssh my-vps '~/redeploy-site.sh'
+        run: |
+          ssh my-vps '~/redeploy-site.sh'
+          docker ps
 
       - name: "Deployment Successful"
-        run: |
-          docker ps -a
-          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
 
       - name: "Deployment Failed"
         if: failure()
